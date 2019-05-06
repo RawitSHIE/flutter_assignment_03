@@ -39,28 +39,23 @@ class AddlistState extends State {
                 },
               ),
               RaisedButton(
-                  child: Text(
-                    'Save',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  color: Theme.of(context).accentColor,
-                  elevation: 4.0,
-                  splashColor: Colors.blueGrey,
-                  onPressed: () {
-                    print('press');
-                    if (_formKey.currentState.validate()) {
-                      Firestore.instance.collection('todos').add({
+                child: Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Theme.of(context).accentColor,
+                elevation: 4.0,
+                splashColor: Colors.blueGrey,
+                onPressed: () async {
+                  if (_formKey.currentState.validate()) {
+                    Firestore.instance.collection('todos').add({
                         // '_id': 1,
                         'title': _title.text,
-                        'done': false
-                      }).then((doc) {
-                        print(doc.toString());
-                      });
-                    } else {
-                      print('value error');
-                    }
+                        'done': false});
                     Navigator.pop(context, "/home");
-                  })
+                  }
+                },
+              )
             ]),
           ),
         ));
