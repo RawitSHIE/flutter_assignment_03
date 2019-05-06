@@ -48,7 +48,7 @@ class AddlistState extends State {
                 splashColor: Colors.blueGrey,
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    Firestore.instance.collection('todos').add({
+                    Firestore.instance.collection('todo').add({
                         // '_id': 1,
                         'title': _title.text,
                         'done': false});

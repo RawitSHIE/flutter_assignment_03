@@ -12,7 +12,7 @@ class Todolist extends StatefulWidget {
 
 class TodolistState extends State {
   int _index = 0;
-  CollectionReference todos = Firestore.instance.collection("todos");
+  CollectionReference todos = Firestore.instance.collection("todo");
   // todos.where('done', isEqualTo: true).snapshots();
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class TodolistState extends State {
           ondone.documents.forEach((item) {
             print(item.data["title"]);
             print(item.documentID);
-            DocumentReference doc = Firestore.instance.document('todos/${item.documentID}');
+            DocumentReference doc = Firestore.instance.document('todo/${item.documentID}');
             Firestore.instance.runTransaction((Transaction t) async {
               DocumentSnapshot dc = await t.get(doc);
               if (dc.exists){
